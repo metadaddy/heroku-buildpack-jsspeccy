@@ -45,9 +45,9 @@ class LanguagePack::JSSPECCY < LanguagePack::Base
       setup_jsspeccy
       install_language_pack_gems
       build_bundler
-      install_binaries
-      run_jake
-      generate_index_html
+      # install_binaries
+      # run_jake
+      # generate_index_html
     end
   end
 
@@ -233,7 +233,7 @@ ERROR
         run("git clone #{JSSPECCY_GIT_URL} .")
         FileUtils.mkdir_p("snapshots")
         run("mv #{build_path}/* snapshots/") # copy roms
-        pipe("make")
+        run("make")
         run("mv * #{build_path}")
       end
     end
