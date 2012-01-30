@@ -18,19 +18,30 @@ Example Usage:
     $ heroku create --stack cedar --buildpack http://github.com/metadaddy-sfdc/heroku-buildpack-jsspeccy.git
 
     $ git push heroku master
-    ...
+    Counting objects: 3, done.
+    Delta compression using up to 4 threads.
+    Compressing objects: 100% (2/2), done.
+    Writing objects: 100% (3/3), 14.22 KiB, done.
+    Total 3 (delta 0), reused 0 (delta 0)
+
     -----> Heroku receiving push
-    -----> Fetching custom buildpack
-    -----> ZX Spectrum game detected
+    -----> Fetching custom buildpack... done
+    -----> JSSPECCY app detected
     -----> Installing dependencies using Bundler version 1.1.rc
-           Running: bundle install --without development:test --path vendor/bundle --deployment
+           Running: bundle install --deployment
            Fetching gem metadata from http://rubygems.org/..
-           Installing rack (1.3.5)
+           Installing rack (1.4.1)
            Using bundler (1.1.rc)
            Your bundle is complete! It was installed into ./vendor/bundle
-           Cleaning up the bundler cache.
     -----> Discovering process types
-           Procfile declares types -> (none)
+           Procfile declares types    -> (none)
+           Default types for JSSPECCY -> web
+    -----> Compiled slug size is 932K
+    -----> Launching... done, v5
+           http://manic-miner-6031769.herokuapp.com deployed to Heroku
 
+    To git@heroku.com:manic-miner-6031769.git
+     * [new branch]      master -> master
+    
 The buildpack will detect your app as ZX Spectrum if it has a `*.sna` file in the root directory. 
 

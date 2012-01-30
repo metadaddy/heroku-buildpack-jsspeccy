@@ -45,9 +45,6 @@ class LanguagePack::JSSPECCY < LanguagePack::Base
       setup_jsspeccy
       install_language_pack_gems
       build_bundler
-      # install_binaries
-      # run_jake
-      # generate_index_html
     end
   end
 
@@ -159,35 +156,6 @@ ERROR
     end
   end
 
-  # default set of binaries to install
-  # @return [Array] resulting list
-  def binaries
-    []
-  end
-
-  # vendors binaries into the slug
-  def install_binaries
-    binaries.each {|binary| install_binary(binary) }
-    Dir["bin/*"].each {|path| run("chmod +x #{path}") }
-  end
-
-  # vendors individual binary into the slug
-  # @param [String] name of the binary package from S3.
-  #   Example: https://s3.amazonaws.com/language-pack-ruby/node-0.4.7.tgz, where name is "node-0.4.7"
-  def install_binary(name)
-    bin_dir = "bin"
-    FileUtils.mkdir_p bin_dir
-    Dir.chdir(bin_dir) do |dir|
-      run("curl #{VENDOR_URL}/#{name}.tgz -s -o - | tar xzf -")
-    end
-  end
-
-  # removes a binary from the slug
-  # @param [String] relative path of the binary on the slug
-  def uninstall_binary(path)
-    FileUtils.rm File.join('bin', File.basename(path)), :force => true
-  end
-
   # runs bundler to install the dependencies
   def build_bundler
     log("bundle") do
@@ -237,23 +205,5 @@ ERROR
         run("mv * #{build_path}")
       end
     end
-  end
-
-  # we need to run jake to build the js files
-  def run_jake
-    topic("Running jake")
-    pipe("bundle exec jake")
-  end
-
-  # generates the index.html
-  def generate_index_html
-    local_roms = Dir['snapshots/*.sna'].map do |rom|
-      name = rom.sub(/\.sna$/, '').sub(%r{^snapshots/}, '')
-      "{\"name\": \"#{name}\", \"file\":\"#{rom}\"}"
-    end.join(",\n")
-    local_roms = '[' + local_roms + ']'
-
-    topic("Writing index.html")
-    File.open('games.json', 'w') {|file| file.puts local_roms }
   end
 end
