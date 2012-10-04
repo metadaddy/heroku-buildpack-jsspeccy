@@ -1,7 +1,7 @@
 Heroku buildpack: ZX Spectrum
 =============================
 
-This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpack) for ZX Spectrum roms. It uses [jsspeccy](http://matt.west.co.tt/spectrum/jsspeccy/) to run 48k ZX Spectrum roms that are pushed to a heroku application.
+This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpack) for ZX Spectrum roms. It uses [jsspeccy](http://matt.west.co.tt/spectrum/jsspeccy/) to run 48k ZX Spectrum roms that are pushed to a heroku application. For example, here's [Manic Miner](http://blooming-fire-1627.herokuapp.com/).
 
 This buildpack is closely based on the [NES buildpack](https://github.com/hone/heroku-buildpack-jsnes) by [Terence Lee](https://twitter.com/hone02).
 
